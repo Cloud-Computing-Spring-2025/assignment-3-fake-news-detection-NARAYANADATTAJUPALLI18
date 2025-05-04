@@ -7,7 +7,7 @@ This project aims to classify news articles as either "REAL" or "FAKE" using mac
 
 ## Project Structure
 
-\`\`\`
+```
 /project-directory
     ├── data
     │   └── fake_news_sample.csv        # Synthetic dataset containing news articles
@@ -22,7 +22,7 @@ This project aims to classify news articles as either "REAL" or "FAKE" using mac
     ├── task4_output.csv                # Predictions after model training
     ├── task5_output.csv                # Evaluation metrics (AUC-ROC, AUC-PR)
     └── README.md                       # Project documentation
-\`\`\`
+```
 
 ## Prerequisites
 
@@ -37,42 +37,84 @@ To run this project, you need to have the following installed:
 
 You can install the necessary Python dependencies using pip:
 
-\`\`\`bash
+```bash
 pip install pyspark
-\`\`\`
+```
 
 ## Project Workflow
 
-### Step 1: Data Preparation
+### Step 1: Data Preparation (Task 1)
 
 The dataset \`fake_news_sample.csv\` is generated synthetically. It contains 500 rows of text, with 250 labeled as "REAL" and 250 labeled as "FAKE". This dataset is used to train the model.
 
-### Step 2: Feature Engineering (Task 3)
+**Task 1 Script**: `task1.py` performs initial data preprocessing to clean and prepare the data.
 
-The data is preprocessed and transformed into features suitable for machine learning. This step outputs a parquet file (\`task3_output.parquet\`), which is used in the subsequent steps.
+Run the preprocessing step with:
 
-### Step 3: Model Training (Task 4)
+```bash
+spark-submit task1.py
+```
+
+This will generate the cleaned dataset in \`task1_output.csv\`.
+
+### Step 2: Feature Engineering (Task 2)
+
+In this step, features are extracted from the text data using various text processing techniques such as tokenization and stopword removal. The output is stored in a Parquet file for efficient storage.
+
+**Task 2 Script**: `task2.py` performs feature extraction on the cleaned dataset.
+
+Run the feature engineering step with:
+
+```bash
+spark-submit task2.py
+```
+
+This will generate the output in \`task2_output.parquet\`.
+
+### Step 3: Feature Transformation (Task 3)
+
+After feature extraction, the data is transformed into a format suitable for training the machine learning model. This transformation involves vectorizing text data and indexing labels.
+
+**Task 3 Script**: `task3.py` performs feature transformation and outputs a Parquet file with the final features.
+
+Run the feature transformation step with:
+
+```bash
+spark-submit task3.py
+```
+
+This will generate the output in \`task3_output.parquet\`.
+
+### Step 4: Model Training (Task 4)
 
 The **Logistic Regression** model is trained using the processed dataset from Task 3. Cross-validation is used to evaluate the model's performance, and regularization (\`regParam=0.1\`) is applied to avoid overfitting.
 
-\`\`\`bash
+**Task 4 Script**: `task4.py` trains the model and saves the predictions.
+
+Run the model training step with:
+
+```bash
 spark-submit task4.py
-\`\`\`
+```
 
 - This will train the model and save predictions in \`task4_output.csv\`.
 - Misclassified rows will also be shown in the console for debugging purposes.
 
-### Step 4: Model Evaluation (Task 5)
+### Step 5: Model Evaluation (Task 5)
 
 After training, the model is evaluated using **AUC-ROC** and **AUC-PR** metrics, which are more reliable in binary classification tasks.
 
-\`\`\`bash
+**Task 5 Script**: `task5.py` evaluates the trained model using the AUC-ROC and AUC-PR metrics.
+
+Run the evaluation step with:
+
+```bash
 spark-submit task5.py
-\`\`\`
+```
 
 - This will generate the evaluation metrics and save the results in \`task5_output.csv\`.
 
-### Step 5: Results
+### Step 6: Results
 
 The metrics are saved in CSV format with the following columns:
 
@@ -80,14 +122,14 @@ The metrics are saved in CSV format with the following columns:
 - **AUC-PR**: The area under the Precision-Recall curve.
 
 ### Example Output:
-\`\`\`bash
+```bash
 +------------+-----+
 | Metric     | Value|
 +------------+-----+
 | AUC-ROC    | 1.0 |
 | AUC-PR     | 1.0 |
 +------------+-----+
-\`\`\`
+```
 
 ## Additional Notes
 
@@ -99,9 +141,4 @@ The metrics are saved in CSV format with the following columns:
 
 This project demonstrates how to train and evaluate a fake news detection model using PySpark. With the adjustments made, the model is less likely to overfit on clean, synthetic data, and more robust evaluation metrics are used to validate performance.
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-EOL
-
-echo "README.md file has been created!"
