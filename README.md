@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Create the README.md file with the following content
+cat <<EOL > README.md
 # Fake News Classification - Project
 
 ## Overview
@@ -10,12 +14,17 @@ This project aims to classify news articles as either "REAL" or "FAKE" using mac
 /project-directory
     ├── data
     │   └── fake_news_sample.csv        # Synthetic dataset containing news articles
-    ├── task3_output.parquet           # Processed output from Task 3 (Feature Engineering)
-    ├── task4.py                       # Model Training with Cross-Validation and Regularization
-    ├── task5.py                       # Model Evaluation with AUC-ROC and AUC-PR metrics
-    ├── task4_output.csv               # Predictions after model training
-    ├── task5_output.csv               # Evaluation metrics (AUC-ROC, AUC-PR)
-    └── README.md                      # Project documentation
+    ├── task1.py                        # Data Preprocessing: Initial data cleaning and preparation
+    ├── task2.py                        # Feature Engineering: Extracting features from text data
+    ├── task3.py                        # Feature Transformation: Transforming features for modeling
+    ├── task4.py                        # Model Training with Cross-Validation and Regularization
+    ├── task5.py                        # Model Evaluation with AUC-ROC and AUC-PR metrics
+    ├── task1_output.csv                # Output of data preprocessing (cleaned data)
+    ├── task2_output.parquet            # Output of feature extraction (features for modeling)
+    ├── task3_output.parquet            # Output of feature transformation (final features for model training)
+    ├── task4_output.csv                # Predictions after model training
+    ├── task5_output.csv                # Evaluation metrics (AUC-ROC, AUC-PR)
+    └── README.md                       # Project documentation
 \`\`\`
 
 ## Prerequisites
