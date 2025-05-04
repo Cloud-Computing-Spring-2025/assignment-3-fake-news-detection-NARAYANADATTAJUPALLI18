@@ -126,8 +126,8 @@ The metrics are saved in CSV format with the following columns:
 +------------+-----+
 | Metric     | Value|
 +------------+-----+
-| AUC-ROC    | 1.0 |
-| AUC-PR     | 1.0 |
+| AUC-ROC    | 0.89 |
+| AUC-PR     | 0.88 |
 +------------+-----+
 ```
 
