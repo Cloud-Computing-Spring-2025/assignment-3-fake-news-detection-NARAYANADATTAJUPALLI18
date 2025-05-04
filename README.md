@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Create the README.md file with the following content
-cat <<EOL > README.md
 # Fake News Classification - Project
 
 ## Overview
